@@ -137,23 +137,6 @@
       margin-top: 30px;
       margin-bottom: 10px;
     }
-
-    #chatToggleBtn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 12px 18px;
-      background-color: #2c3e50;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      z-index: 2000;
-    }
-
-    #chatToggleBtn:hover {
-      background-color: #1a242f;
-    }
   </style>
 </head>
 <body>
@@ -235,39 +218,21 @@
     </section>
   </main>
 
-  <!-- Button to Trigger Chat -->
-  <button id="chatToggleBtn">Open Chat (Drawer)</button>
-
-  <script src='https://edge-a.anydone.com/chat-iframe.js'></script>
-<script>
-const apiKeyId = "26C8799635544471AB3FA6C1618772DD";
-const apiSecret = "2KDB7b_Exh5LEXw62c3t6fGXxqNim92IdhW0WTSD9i6IvaC";
-const placeholder = {};
-init_anydone_chat(apiKeyId, apiSecret, placeholder);
-</script>
-
-  <!-- Anydone Chat Widget -->
-  <script src="https://edge-a.anydone.com/chat.js"></script>
+  <!-- Anydone Chat - iframe mode -->
+  <script src="https://edge-a.anydone.com/chat-iframe.js"></script>
   <script>
-    let chatInitialized = false;
+    const apiKeyId = "26C8799635544471AB3FA6C1618772DD";
+    const apiSecret = "2KDB7b_Exh5LEXw62c3t6fGXxqNim92IdhW0WTSD9i6IvaC";
+    const placeholder = {}; // optional fields like name, email etc.
 
-    function initializeChatBot() {
-      if (chatInitialized) return;
-
-      const apiKeyId = "26C8799635544471AB3FA6C1618772DD";
-      const apiSecret = "2KDB7b_Exh5LEXw62c3t6fGXxqNim92IdhW0WTSD9i6IvaC";
-      const mode = 'sidedrawer_mode';
-      const placeholder = {};
-
-      if (typeof init_anydone_chat === 'function') {
-        init_anydone_chat(apiKeyId, apiSecret, placeholder, mode);
-        chatInitialized = true;
+    // Initialize the Anydone Chat Widget in iframe view
+    window.onload = function () {
+      if (typeof init_anydone_chat === "function") {
+        init_anydone_chat(apiKeyId, apiSecret, placeholder);
       } else {
-        console.error("Anydone chat script not loaded yet.");
+        console.error("Anydone iframe chat script not loaded properly.");
       }
-    }
-
-    document.getElementById("chatToggleBtn").addEventListener("click", initializeChatBot);
+    };
   </script>
 </body>
 </html>
