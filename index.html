@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clothing Inventory System</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 200px;
+      right: 0;
+      height: 60px;
+      background-color: #2c3e50;
+      color: white;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      z-index: 1000;
+    }
+
+    aside {
+      width: 200px;
+      background-color: #34495e;
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    aside ul {
+      list-style: none;
+    }
+
+    aside li {
+      margin: 15px 0;
+    }
+
+    aside a {
+      color: white;
+      text-decoration: none;
+    }
+
+    main {
+      margin-left: 200px;
+      margin-top: 60px;
+      padding: 20px;
+      overflow-y: auto;
+      height: calc(100vh - 60px);
+    }
+
+    .search-bar {
+      margin-bottom: 20px;
+    }
+
+    .search-bar input {
+      padding: 10px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #ecf0f1;
+    }
+
+    .add-form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .add-form form {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .add-form input {
+      padding: 10px;
+      flex: 1 1 150px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .add-form button {
+      padding: 10px 20px;
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-form button:hover {
+      background-color: #2ecc71;
+    }
+
+    h2 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <nav>
+      <ul>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Inventory</a></li>
+        <li><a href="#">Add Item</a></li>
+        <li><a href="#">Reports</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <header>
+    <h1>Clothing Inventory Management System</h1>
+  </header>
+
+  <main>
+    <div class="search-bar">
+      <input type="text" placeholder="Search items...">
+    </div>
+
+    <section class="inventory">
+      <h2>Inventory List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Item Name</th>
+            <th>Category</th>
+            <th>Size</th>
+            <th>Color</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Repeat rows for demo purposes -->
+          <!-- You can generate hundreds of rows dynamically later with JS -->
+          <!-- Example rows -->
+          <!-- START -->
+          <script>
+            let content = '';
+            const categories = ['Topwear', 'Bottomwear', 'Outerwear', 'Footwear', 'Accessories'];
+            const colors = ['Red', 'Blue', 'Black', 'White', 'Green'];
+            for (let i = 1; i <= 100; i++) {
+              content += `<tr>
+                <td>${1000 + i}</td>
+                <td>Item ${i}</td>
+                <td>${categories[i % categories.length]}</td>
+                <td>${['S','M','L','XL'][i % 4]}</td>
+                <td>${colors[i % colors.length]}</td>
+                <td>${Math.floor(Math.random() * 50 + 1)}</td>
+              </tr>`;
+            }
+            document.write(content);
+          </script>
+          <!-- END -->
+        </tbody>
+      </table>
+    </section>
+
+    <section class="add-form">
+      <h2>Add New Clothing Item</h2>
+      <form>
+        <input type="text" placeholder="Item Name" required />
+        <input type="text" placeholder="Category" required />
+        <input type="text" placeholder="Size" required />
+        <input type="text" placeholder="Color" required />
+        <input type="number" placeholder="Quantity" required />
+        <button type="submit">Add Item</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
