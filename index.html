@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Clothing Inventory System</title>
   <style>
-    /* (your styles unchanged from above, omitted for brevity) */
+    /* Add your existing styles above */
 
-    /* Add button styling if you like */
     #chatToggleBtn {
       position: fixed;
       bottom: 20px;
@@ -18,36 +17,43 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      z-index: 2000;
+      z-index: 9999;
     }
 
     #chatToggleBtn:hover {
-      background-color: #34495e;
+      background-color: #1a242f;
     }
   </style>
 </head>
 <body>
-  <!-- Your aside, header, main (unchanged from your version) -->
 
-  <!-- Add Chat Trigger Button -->
-  <button id="chatToggleBtn" onclick="initializeChatBot()">Open Chat (Drawer)</button>
+  <!-- Your sidebar, header, and main content (inventory, etc.) -->
 
-  <!-- Load Anydone Chat -->
+  <!-- Chat Button -->
+  <button id="chatToggleBtn">Open Chat (Drawer)</button>
+
+  <!-- Load the Anydone Script -->
   <script src="https://edge-a.anydone.com/chat.js"></script>
   <script>
+    let chatInitialized = false;
+
     function initializeChatBot() {
+      if (chatInitialized) return;
+
       const apiKeyId = "26C8799635544471AB3FA6C1618772DD";
       const apiSecret = "2KDB7b_Exh5LEXw62c3t6fGXxqNim92IdhW0WTSD9i6IvaC";
-      const mode = 'sidedrawer_mode'; // Drawer on right side
-      const placeholder = {};
-      const initialized = true;
-      
+      const mode = 'sidedrawer_mode'; // Drawer mode
+      const placeholder = {}; // You can pass sessionId, user info here
+
       if (typeof init_anydone_chat === 'function') {
-        init_anydone_chat(apiKeyId, apiSecret, placeholder, mode, initialized);
+        init_anydone_chat(apiKeyId, apiSecret, placeholder, mode);
+        chatInitialized = true;
       } else {
-        console.error("Anydone chat library not loaded.");
+        console.error("Anydone chat library not loaded yet.");
       }
     }
+
+    document.getElementById("chatToggleBtn").addEventListener("click", initializeChatBot);
   </script>
 </body>
 </html>
