@@ -92,6 +92,13 @@
       background-color: #ecf0f1;
     }
 
+    td img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+
     .add-form {
       background-color: #fff;
       padding: 20px;
@@ -157,6 +164,7 @@
       <table>
         <thead>
           <tr>
+            <th>Image</th>
             <th>ID</th>
             <th>Item Name</th>
             <th>Category</th>
@@ -166,16 +174,22 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Repeat rows for demo purposes -->
-          <!-- You can generate hundreds of rows dynamically later with JS -->
-          <!-- Example rows -->
-          <!-- START -->
+          <!-- JavaScript generates 100 items with images -->
           <script>
             let content = '';
             const categories = ['Topwear', 'Bottomwear', 'Outerwear', 'Footwear', 'Accessories'];
             const colors = ['Red', 'Blue', 'Black', 'White', 'Green'];
+            const images = [
+              'https://via.placeholder.com/60x60?text=Tee',
+              'https://via.placeholder.com/60x60?text=Pant',
+              'https://via.placeholder.com/60x60?text=Jacket',
+              'https://via.placeholder.com/60x60?text=Shoes',
+              'https://via.placeholder.com/60x60?text=Cap'
+            ];
+
             for (let i = 1; i <= 100; i++) {
               content += `<tr>
+                <td><img src="${images[i % images.length]}" alt="Clothing Item" /></td>
                 <td>${1000 + i}</td>
                 <td>Item ${i}</td>
                 <td>${categories[i % categories.length]}</td>
@@ -186,7 +200,6 @@
             }
             document.write(content);
           </script>
-          <!-- END -->
         </tbody>
       </table>
     </section>
@@ -199,6 +212,7 @@
         <input type="text" placeholder="Size" required />
         <input type="text" placeholder="Color" required />
         <input type="number" placeholder="Quantity" required />
+        <input type="url" placeholder="Image URL" required />
         <button type="submit">Add Item</button>
       </form>
     </section>
