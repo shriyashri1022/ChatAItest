@@ -174,20 +174,18 @@
           </tr>
         </thead>
         <tbody>
-          <!-- JavaScript generates 100 items with images -->
           <script>
-            let content = '';
             const categories = ['Topwear', 'Bottomwear', 'Outerwear', 'Footwear', 'Accessories'];
             const colors = ['Red', 'Blue', 'Black', 'White', 'Green'];
             const images = [
-              'https://unsplash.com/photos/flash-light-qlyF821bSYw',
-              'https://unsplash.com/photos/a-woman-sitting-on-a-chair-taking-a-picture-of-herself-VrRd8PowurQ',
-              'https://unsplash.com/photos/a-red-jacket-hanging-on-a-clothes-line-L7MBmE1VbVg',
-              'https://unsplash.com/photos/a-woman-standing-next-to-a-rack-of-clothes-lXnWeBCX_hE',
-              'https://unsplash.com/photos/a-row-of-shirts-hanging-on-a-clothes-rack-roksTutEPSo',
-              'https://unsplash.com/photos/a-rack-of-clothes-hanging-on-a-clothes-rack-dz0nIhFHCNg'
+              'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=60&h=60',
+              'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=60&h=60',
+              'https://images.unsplash.com/photo-1602810311522-98d66b9e2315?auto=format&fit=crop&w=60&h=60',
+              'https://images.unsplash.com/photo-1530845646848-6da1cf3c34e8?auto=format&fit=crop&w=60&h=60',
+              'https://images.unsplash.com/photo-1602810311975-0660b4c23f2e?auto=format&fit=crop&w=60&h=60'
             ];
 
+            let content = '';
             for (let i = 1; i <= 100; i++) {
               content += `<tr>
                 <td><img src="${images[i % images.length]}" alt="Clothing Item" /></td>
@@ -204,14 +202,7 @@
         </tbody>
       </table>
     </section>
-<script src='https://edge-a.anydone.com/chat.js'></script>
-<script>
-const apiKeyId = "26C8799635544471AB3FA6C1618772DD";
-const apiSecret = "2KDB7b_Exh5LEXw62c3t6fGXxqNim92IdhW0WTSD9i6IvaC";
-const mode = 'popup_mode'
-const placeholder = {};
-init_anydone_chat(apiKeyId, apiSecret, placeholder, mode);
-</script>
+
     <section class="add-form">
       <h2>Add New Clothing Item</h2>
       <form>
@@ -225,5 +216,22 @@ init_anydone_chat(apiKeyId, apiSecret, placeholder, mode);
       </form>
     </section>
   </main>
+
+  <!-- Load Anydone Chat -->
+  <script src="https://edge-a.anydone.com/chat.js"></script>
+  <script>
+    window.onload = function () {
+      const apiKeyId = "26C8799635544471AB3FA6C1618772DD";
+      const apiSecret = "2KDB7b_Exh5LEXw62c3t6fGXxqNim92IdhW0WTSD9i6IvaC";
+      const mode = 'popup_mode';
+      const placeholder = {};
+      
+      if (typeof init_anydone_chat === 'function') {
+        init_anydone_chat(apiKeyId, apiSecret, placeholder, mode);
+      } else {
+        console.error("Anydone chat library not loaded.");
+      }
+    };
+  </script>
 </body>
 </html>
