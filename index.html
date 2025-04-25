@@ -5,245 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Clothing Inventory System</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* (your styles unchanged from above, omitted for brevity) */
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      display: flex;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    header {
+    /* Add button styling if you like */
+    #chatToggleBtn {
       position: fixed;
-      top: 0;
-      left: 200px;
-      right: 0;
-      height: 60px;
-      background-color: #2c3e50;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      z-index: 1000;
-    }
-
-    aside {
-      width: 200px;
-      background-color: #34495e;
-      padding: 20px;
-      height: 100vh;
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
-
-    aside ul {
-      list-style: none;
-    }
-
-    aside li {
-      margin: 15px 0;
-    }
-
-    aside a {
-      color: white;
-      text-decoration: none;
-    }
-
-    main {
-      margin-left: 200px;
-      margin-top: 60px;
-      padding: 20px;
-      overflow-y: auto;
-      height: calc(100vh - 60px);
-    }
-
-    .search-bar {
-      margin-bottom: 20px;
-    }
-
-    .search-bar input {
-      padding: 10px;
-      width: 300px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 40px;
-    }
-
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
-    }
-
-    th {
-      background-color: #ecf0f1;
-    }
-
-    td img {
-      width: 60px;
-      height: 60px;
-      object-fit: cover;
-      border-radius: 4px;
-    }
-
-    .add-form {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 6px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .add-form form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .add-form input {
-      padding: 10px;
-      flex: 1 1 150px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-
-    .add-form button {
+      bottom: 20px;
+      right: 20px;
       padding: 10px 20px;
-      background-color: #27ae60;
-      color: white;
+      background-color: #2c3e50;
+      color: #fff;
       border: none;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
+      z-index: 2000;
     }
 
-    .add-form button:hover {
-      background-color: #2ecc71;
-    }
-
-    h2 {
-      margin-top: 30px;
-      margin-bottom: 10px;
+    #chatToggleBtn:hover {
+      background-color: #34495e;
     }
   </style>
 </head>
 <body>
-  <aside>
-    <nav>
-      <ul>
-        <li><a href="#">Dashboard</a></li>
-        <li><a href="#">Inventory</a></li>
-        <li><a href="#">Add Item</a></li>
-        <li><a href="#">Reports</a></li>
-      </ul>
-    </nav>
-  </aside>
+  <!-- Your aside, header, main (unchanged from your version) -->
 
-  <header>
-    <h1>Clothing Inventory Management System</h1>
-  </header>
-
-  <main>
-    <div class="search-bar">
-      <input type="text" placeholder="Search items...">
-    </div>
-
-    <section class="inventory">
-      <h2>Inventory List</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Image</th>
-            <th>ID</th>
-            <th>Item Name</th>
-            <th>Category</th>
-            <th>Size</th>
-            <th>Color</th>
-            <th>Quantity</th>
-          </tr>
-        </thead>
-        <tbody>
-          <script>
-            const categories = ['Topwear', 'Bottomwear', 'Outerwear', 'Footwear', 'Accessories'];
-            const colors = ['Red', 'Blue', 'Black', 'White', 'Green'];
-            const images = [
-              'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=60&h=60',
-              'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=60&h=60',
-              'https://images.unsplash.com/photo-1602810311522-98d66b9e2315?auto=format&fit=crop&w=60&h=60',
-              'https://images.unsplash.com/photo-1530845646848-6da1cf3c34e8?auto=format&fit=crop&w=60&h=60',
-              'https://images.unsplash.com/photo-1602810311975-0660b4c23f2e?auto=format&fit=crop&w=60&h=60'
-            ];
-
-            let content = '';
-            for (let i = 1; i <= 100; i++) {
-              content += `<tr>
-                <td><img src="${images[i % images.length]}" alt="Clothing Item" /></td>
-                <td>${1000 + i}</td>
-                <td>Item ${i}</td>
-                <td>${categories[i % categories.length]}</td>
-                <td>${['S','M','L','XL'][i % 4]}</td>
-                <td>${colors[i % colors.length]}</td>
-                <td>${Math.floor(Math.random() * 50 + 1)}</td>
-              </tr>`;
-            }
-            document.write(content);
-          </script>
-        </tbody>
-      </table>
-    </section>
-
-    <section class="add-form">
-      <h2>Add New Clothing Item</h2>
-      <form>
-        <input type="text" placeholder="Item Name" required />
-        <input type="text" placeholder="Category" required />
-        <input type="text" placeholder="Size" required />
-        <input type="text" placeholder="Color" required />
-        <input type="number" placeholder="Quantity" required />
-        <input type="url" placeholder="Image URL" required />
-        <button type="submit">Add Item</button>
-      </form>
-    </section>
-  </main>
+  <!-- Add Chat Trigger Button -->
+  <button id="chatToggleBtn" onclick="initializeChatBot()">Open Chat (Drawer)</button>
 
   <!-- Load Anydone Chat -->
-  <script src='https://edge-a.anydone.com/chat.js'></script>
-<script>
-    function initializeChatBot() {
-    const apiKeyId = "26C8799635544471AB3FA6C1618772DD";
-    const apiSecret = "2KDB7b_Exh5LEXw62c3t6fGXxqNim92IdhW0WTSD9i6IvaC";
-    const mode = 'sidedrawer_mode'
-    const placeholder = {};
-    const initialized = true;
-    init_anydone_chat(apiKeyId, apiSecret, placeholder, mode, initialized);
-    }
-  <button onclick="initializeChatBot()">Initialize Chat Bot</button>
-</script>
   <script src="https://edge-a.anydone.com/chat.js"></script>
   <script>
-    window.onload = function () {
+    function initializeChatBot() {
       const apiKeyId = "26C8799635544471AB3FA6C1618772DD";
       const apiSecret = "2KDB7b_Exh5LEXw62c3t6fGXxqNim92IdhW0WTSD9i6IvaC";
-      const mode = 'popup_mode';
+      const mode = 'sidedrawer_mode'; // Drawer on right side
       const placeholder = {};
+      const initialized = true;
       
       if (typeof init_anydone_chat === 'function') {
-        init_anydone_chat(apiKeyId, apiSecret, placeholder, mode);
+        init_anydone_chat(apiKeyId, apiSecret, placeholder, mode, initialized);
       } else {
         console.error("Anydone chat library not loaded.");
       }
-    };
+    }
   </script>
 </body>
 </html>
